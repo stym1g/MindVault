@@ -1,0 +1,16 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: mindvault-mongodb
+    restart: unless-stopped
+    ports: ["27017:27017"]
+    volumes: [mindvault_mongo:/data/db]
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: mindvault-qdrant
+    restart: unless-stopped
+    ports: ["6333:6333", "6334:6334"]
+    volumes: [mindvault_qdrant:/qdrant/storage]
+volumes:
+  mindvault_mongo:
+  mindvault_qdrant:
